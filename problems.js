@@ -106,3 +106,32 @@ var gcdOfStrings = function(str1, str2) {
     // return the substring of str1 that is the gcd of the two lengths
     return str1.substring(0, gcdlength)
 };
+
+// 1431. Kids With the Greatest Number of Candies
+
+// There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+
+// Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+
+// Note that multiple kids can have the greatest number of candies.
+
+// var kidsWithCandies = function(candies, extraCandies) {
+//     const maxCandies = Math.max(...candies)
+//     const result = []
+    
+//     for(i = 0; i < candies.length; i++) {
+//         if (candies[i] === maxCandies || candies[i] + extraCandies >= maxCandies) {
+//             result.push(true)
+//         } else {
+//             result.push(false)
+//         }
+//     }
+
+//     return result
+// };
+
+var kidsWithCandies = function(candies, extraCandies) {
+    const maxCandies = Math.max(...candies)
+
+    return candies.map(candy => candy + extraCandies >= maxCandies)
+};
