@@ -115,23 +115,68 @@ var gcdOfStrings = function(str1, str2) {
 
 // Note that multiple kids can have the greatest number of candies.
 
-// var kidsWithCandies = function(candies, extraCandies) {
-//     const maxCandies = Math.max(...candies)
-//     const result = []
+var kidsWithCandies1 = function(candies, extraCandies) {
+    const maxCandies = Math.max(...candies)
+    const result = []
     
-//     for(i = 0; i < candies.length; i++) {
-//         if (candies[i] === maxCandies || candies[i] + extraCandies >= maxCandies) {
-//             result.push(true)
-//         } else {
-//             result.push(false)
-//         }
-//     }
+    for(i = 0; i < candies.length; i++) {
+        if (candies[i] === maxCandies || candies[i] + extraCandies >= maxCandies) {
+            result.push(true)
+        } else {
+            result.push(false)
+        }
+    }
 
-//     return result
-// };
+    return result
+};
 
 var kidsWithCandies = function(candies, extraCandies) {
     const maxCandies = Math.max(...candies)
 
     return candies.map(candy => candy + extraCandies >= maxCandies)
 };
+
+// 605. Can Place Flowers
+
+// You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
+
+// Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+
+ 
+
+// Example 1:
+
+// Input: flowerbed = [1,0,0,0,1], n = 1
+// Output: true
+// Example 2:
+
+// Input: flowerbed = [1,0,0,0,1], n = 2
+// Output: false
+ 
+
+// Constraints:
+
+// 1 <= flowerbed.length <= 2 * 104
+// flowerbed[i] is 0 or 1.
+// There are no two adjacent flowers in flowerbed.
+// 0 <= n <= flowerbed.length
+
+var canPlaceFlowers = function(flowerbed, n) {
+    let newFlowers = 0
+
+    for(i=0; i < flowerbed.length; i++) {
+        if (flowerbed[i] === 0) {
+
+            const prev = i === 0 || flowerbed[i - 1] === 0
+            const next = i === flowerbed.length - 1 || flowerbed[i + 1] === 0
+            if (prev && next) {
+                newFlowers++
+                flowerbed[i] = 1
+                if (newFlowers >= n) return true
+            }
+        }
+    }
+    
+    console.log(newFlowers)
+    return newFlowers === n
+};      
