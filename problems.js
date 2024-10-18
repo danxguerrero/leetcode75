@@ -179,4 +179,58 @@ var canPlaceFlowers = function(flowerbed, n) {
     
     console.log(newFlowers)
     return newFlowers === n
-};      
+};
+
+// 345. Reverse Vowels of a String
+// Given a string s, reverse only all the vowels in the string and return it.
+
+// The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+ 
+
+// Example 1:
+
+// Input: s = "IceCreAm"
+
+// Output: "AceCreIm"
+
+// Explanation:
+
+// The vowels in s are ['I', 'e', 'e', 'A']. On reversing the vowels, s becomes "AceCreIm".
+
+// Example 2:
+
+// Input: s = "leetcode"
+
+// Output: "leotcede"
+
+ 
+
+// Constraints:
+
+// 1 <= s.length <= 3 * 105
+// s consist of printable ASCII characters.
+
+var reverseVowels = function(s) {
+    let i = 0
+    let j = s.length - 1
+    const vowels = new Set(["a","e","i","o","u", "A", "E", "I", "O", "U"])
+    let arr = s.split("")
+
+    while (i < j) {
+        while (i < j && !vowels.has(arr[i])) {
+            i++
+        }
+
+        while (i < j && !vowels.has(arr[j])) {
+            j--
+        }
+
+        [arr[i], arr[j]] = [arr[j], arr[i]]
+
+        i++
+        j--
+    }
+
+    return arr.join('')
+};
